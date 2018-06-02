@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">  
+</head>
+
+<style>	
+		h1{
+			font-family:"Arial Black", Gadget, sans-serif;
+			color : red;
+		}
+		body{
+			background-color:white;
+			font-size : 20px;
+			margin-left:50px;
+		}
+
+		table{
+		   width:25%; 
+		   border-collapse:collapse; 
+		   border-style: solid;
+	       border-spacing: 15px 30px;
+		}
+		
+		td
+        {       
+	       border:blue 2px solid;
+	       word-wrap:break-word;
+		}
+		
+        td.value{
+	       width:10%;
+		}
+		
+		tr td:nth-child(odd) {
+			background-color : lightblue;
+		}
+
+		tr td:nth-child(even) {
+			background-color: white;
+		}
+
+		button {
+
+          padding-top: 5px;
+          padding-bottom: 5px;
+		  font-size: 20px;
+		  margin-top: 30px;
+		  margin-bottom: 30px; 
+          background-color: green;
+          color: white;
+
+		}
+
+		a {
+			font-size : 20px;
+		}
+
+		a.hover {
+          background-color: #4CAF50;
+        }
+	</style>
+
+<body>
+	<h1>{{h}}</h1>
+	<hr> 
+	<form action="/updateRecord" method="POST"> 
+		{% for pet in pets %}
+		 <br/>
+	<input type="text" name="_id" value="{{ pet['_id'] }}" hidden>
+
+	<table>
+	<tr>
+		<td>Pet Name</td> 
+		
+		<td class="value"><input type="text" name="name" value="{{ pet['name'] }}" placeholder="{{ pet['name'] }}"></td>
+	</tr>
+
+    <tr>
+		<td>Status</td>  
+				  
+		<td class="value"><select name="status">   
+				<option value="available"{% if pet['status']=='available' %} selected="selected"{% endif %}>available</option>
+				<option value="pending"{% if pet['status']=='pending' %} selected="selected"{% endif %}>pending</option>
+				<option value="sold"{% if pet['status']=='sold' %} selected="selected"{% endif %}>sold</option>
+ 
+		</select></td>
+		
+	</tr>
+
+
+	<tr>
+	<td>Category Name</td>  
+		  
+		   <td class="value"><select name="categoryName">  
+				<option value="Dogs"{% if pet['categoryName']=='Dogs' %} selected="selected"{% endif %}>Dogs</option>
+				<option value="Cats"{% if pet['categoryName']=='Cats' %} selected="selected"{% endif %}>Cats</option> 
+				<option value="Rats"{% if pet['categoryName']=='Rats' %} selected="selected"{% endif %}>Rats</option> 
+				<option value="Snakes"{% if pet['categoryName']=='Snakes' %} selected="selected"{% endif %}>Snakes</option> 
+				<option value="Turtle"{% if pet['categoryName']=='Turtle' %} selected="selected"{% endif %}>Turtle</option> 
+				<option value="Rabbits"{% if pet['categoryName']=='Rabbits' %} selected="selected"{% endif %}>Rabbits</option>
+            </select></td>
+
+ 	</tr>
+	
+	 <tr>
+	<td>Origin</td> 
+	        <td class="value"><select name="origin"> 
+				<option value="Canada"{% if pet['origin']=='Canada' %} selected="selected"{% endif %}>Canada</option>
+				<option value="USA"{% if pet['origin']=='USA' %} selected="selected"{% endif %}>USA</option>
+				<option value="Australia"{% if pet['origin']=='Australia' %} selected="selected"{% endif %}>Australia</option>
+				<option value="Germany"{% if pet['origin']=='Germany' %} selected="selected"{% endif %}>Germany</option>
+				<option value="Russia"{% if pet['origin']=='Russia' %} selected="selected"{% endif %}>Russia</option>
+				<option value="France"{% if pet['origin']=='France' %} selected="selected"{% endif %}>France</option>
+ 
+			</select></td>
+
+	</tr>
+
+
+	<tr>
+	<td>Age</td> 
+	          <td class="value"><input type="text" name="age" value="{{ pet['age'] }}" placeholder="{{ pet['age'] }}"></td>
+	</tr>
+	</table>
+	{% endfor %}
+		<button type="submit"> Update pet </button>
+		<br/>
+	</form>
+	<a href="/">Return to Home Page</a>
+</body>
+</html>

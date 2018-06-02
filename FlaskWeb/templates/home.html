@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{ title }} - My Flask Application</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">  
+	<!--- link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}"> -->
+	<link rel="stylesheet" type="text/css"  href="/static/assets/style.css">
+</head>
+ 
+
+<body>
+		<div class="container">
+	<div class="jumbotron">
+		<h1>Welcome to my Lab on Flask</h1>
+		<p class="lead">Flask is a micro web framework written in Python.  It is designed to make getting started quick and easy, with the ability to scale up to complex applications.</p>
+		<p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+		<h3>By Lawrence Sit</h3>
+	</div>
+
+	<h1>{{h}}</h1>
+	<hr>
+	{% if pets[0] %}
+	 
+	<table class="table">
+	    <tr id="row">
+	    	
+	    	<th class="name">Pet Name</th>
+			<th class="categoryName">Category Name</th>
+			<th class="status">Status</th>
+	    	<th class="origin">Origin</th>
+	    	<th class="age">Age</th>
+		    <th class="func">Delete</th>
+		    <th class="func">Modify</th>
+	    </tr>
+		{% for pet in pets %}
+		<tr class="datas">
+			 
+			<td class="name">{{ pet["name"] }}</td>
+			<td class="categoryName">{{ pet["categoryName"] }}</td>
+			<td class="status">{{ pet["status"] }}</td>
+			<td class="origin">{{ pet["origin"] }}</td>
+			<td class="age">{{ pet["age"] }}</td>
+			<td class="func1"><a href="./remove?_id={{ pet['_id'] }}"><button type="submit">DELETE</button></a></td>
+			<td class="func1"><a href="./update/{{ pet['_id'] }}"><button type="submit">EDIT</button></a></td>
+		</tr>
+		{% endfor %} 
+	{% endif %}
+	</table>
+</div> 
+</body>
+</html>
